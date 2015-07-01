@@ -1,0 +1,10 @@
+{
+  "name": "sfetch",
+  "private": true,
+  "version": "0.1.0",
+  "main": "entity",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "haoxin"
+}
