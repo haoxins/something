@@ -46,10 +46,10 @@ class Item {
     const name = this.name.trim()
 
     if (name) {
-      this.addItem({name})
-      this.name = ''
-
-      setTimeout(() => this.getItems(), 500)
+      this
+        .addItem({name})
+        .then(() => this.name = '')
+        .then(() => this.getItems())
     }
   }
 
