@@ -1,1 +1,9 @@
+npm-debug.log
+node_modules/
+build/
+
+__pycache__
+
 .DS_Store
+
+*.out
