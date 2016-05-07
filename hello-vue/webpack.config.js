@@ -6,12 +6,22 @@ const webpack = require('webpack')
 const path = require('path')
 
 const joindir = p => path.join(__dirname, p)
+const isDev = process.env.NODE_ENV !== 'build'
+
+const commons = isDev ? ['webpack-hot-middleware/client'] : []
+const plugins = isDev ? [
+  new webpack.HotModuleReplacementPlugin(),
+  new ExtractTextPlugin('[name].css'),
+  new webpack.NoErrorsPlugin(),
+] : [
+  new ExtractTextPlugin('[name].css'),
+]
 
 module.exports = {
   devtool: 'source-map',
 
   entry: {
-    main: ['webpack-hot-middleware/client', joindir('view/main')],
+    main: [...commons, joindir('view/main')],
   },
 
   output: {
@@ -35,9 +45,5 @@ module.exports = {
     }]
   },
 
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new ExtractTextPlugin('[name].css'),
-    new webpack.NoErrorsPlugin(),
-  ]
+  plugins
 }

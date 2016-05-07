@@ -15,8 +15,8 @@ import {
     },
 
     actions: {
-      getItems,
-      addItem
+      getItems: getItems,
+      addItem: addItem
     }
   },
 

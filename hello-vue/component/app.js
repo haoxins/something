@@ -7,7 +7,7 @@ import Item from './item'
 
 @Component({
   components: {
-    Item
+    Item: Item
   },
 
   vuex: {},
@@ -24,5 +24,5 @@ class App {}
 
 export default {
   components: {App},
-  store
+  store: store
 }
