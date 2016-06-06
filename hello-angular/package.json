@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "tsc": "tsc app/*.ts"
   },
   "author": "haoxin",
   "dependencies": {
@@ -11,6 +12,11 @@
     "rxjs": "^5.0.0-beta.8",
     "systemjs": "^0.19.29",
     "zone.js": "^0.6.12"
+  },
+  "devDependencies": {
+    "tslint": "^3.10.2",
+    "typescript": "^1.8.10",
+    "typings": "^1.0.4"
   },
   "license": "MIT"
 }
