@@ -1,6 +1,5 @@
 
-(app => {
-  document.addEventListener('DOMContentLoaded', () => {
-    ng.platform.browser.bootstrap(app.AppComponent)
-  })
-})(window.app || (window.app = {}))
+import { bootstrap } from '@angular/platform-browser-dynamic'
+import { AppComponent } from './component'
+
+bootstrap(AppComponent)

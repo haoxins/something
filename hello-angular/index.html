@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>hello angular</title>
+  <head>
+    <title>hello angular</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
-  <script src="node_modules/rxjs/bundles/Rx.umd.js"></script>
-  <script src="node_modules/angular2/bundles/angular2-all.umd.js"></script>
+    <script src="/node_modules/zone.js/dist/zone.js"></script>
+    <script src="/node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="/node_modules/systemjs/dist/system.src.js"></script>
 
-  <script src='app/component.js'></script>
-  <script src='app/main.js'></script>
-</head>
+    <script src="/systemjs.config.js"></script>
+    <script>
+      System.import('app').catch(err => console.error(err))
+    </script>
+  </head>
 
-<body>
-  <div class="app">Loading...</div>
-</body>
-
+  <body>
+    <app>Loading...</app>
+  </body>
 </html>

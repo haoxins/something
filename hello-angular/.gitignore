@@ -1,2 +1,4 @@
+app/**/*.js.map
 app/**/*.js
 .DS_Store
+typings/
