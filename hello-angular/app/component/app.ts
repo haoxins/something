@@ -1,27 +1,14 @@
 
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
+import { HeroInfoCom } from './hero-info'
 
-class Hero {
-  id: number
-  name: string
-}
-
-const heroes: Hero[] = [{
-  id: 1,
-  name: 'one'
-}, {
-  id: 2,
-  name: 'two'
-}, {
-  id: 3,
-  name: 'three'
-}, {
-  id: 4,
-  name: 'four'
-}]
+import { HeroService } from '../service/hero'
+import Hero from '../model/hero'
 
 @Component({
   selector: 'app',
+  directives: [HeroInfoCom],
+  providers: [HeroService],
   template: `
     <h1>{{title}}</h1>
     <h2>{{hero.name}}</h2>
@@ -42,26 +29,34 @@ const heroes: Hero[] = [{
         <span>{{hero.name}}</span>
       </p>
     </hero-list>
-    <selected-hero *ngIf="selectedHero">
-      <h2>selected hero</h2>
-      <p>
-        <span>{{selectedHero.id}}</span>
-        <span>{{selectedHero.name}}</span>
-        <input [(ngModel)]="selectedHero.name" placeholder="name">
-      </p>
-    </selected-hero>
+    <hero-info [hero]="selectedHero"></hero-info>
   `
 })
 
-export class AppComponent {
+export class App {
+  constructor(private heroService: HeroService) {
+
+  }
+
   title = 'hello'
-  heroes = heroes
+  heroes: Hero[]
   selectedHero: Hero
   hero: Hero = {
     id: 1,
     name: 'haoxin'
   }
+
+  ngOnInit() {
+    this.getHeroes()
+  }
+
   onSelect(hero: Hero) {
     this.selectedHero = hero
+  }
+
+  getHeroes() {
+    this.heroService
+      .getHeroes()
+      .then(heros => this.heroes = heros)
   }
 }
