@@ -5,6 +5,7 @@
   "scripts": {
     "start": "my serve 3000",
     "build": "npm run tsc",
+    "watch": "tsc -w",
     "postinstall": "typings install",
     "lint": "tslint app/**/*.ts -t verbose",
     "tsc": "tsc"
