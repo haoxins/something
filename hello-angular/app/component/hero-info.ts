@@ -1,5 +1,8 @@
 
-import { Component, Input } from '@angular/core'
+import { RouteParams } from '@angular/router-deprecated'
+import { Component, OnInit, Input } from '@angular/core'
+
+import { HeroService } from '../service/hero'
 import Hero from '../model/hero'
 
 @Component({
@@ -12,11 +15,28 @@ import Hero from '../model/hero'
         <span>{{hero.name}}</span>
         <input [(ngModel)]="hero.name" placeholder="name">
       </p>
+      <button (click)="goBack()">Back</button>
     </div>
   `
 })
 
-export class HeroInfoCom {
+export class HeroInfoCom implements OnInit {
   @Input()
   hero: Hero
+
+  constructor(
+    private heroService: HeroService,
+    private routeParams: RouteParams) {
+
+  }
+
+  goBack() {
+    window.history.back()
+  }
+
+  ngOnInit() {
+    let id = +this.routeParams.get('id')
+    this.heroService.getHero(id)
+      .then(hero => this.hero = hero)
+  }
 }

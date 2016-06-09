@@ -1,14 +1,32 @@
 
-import { Component, OnInit } from '@angular/core'
-import { HeroInfoCom } from './hero-info'
+import { Component } from '@angular/core'
+import {
+  ROUTER_DIRECTIVES,
+  ROUTER_PROVIDERS,
+  RouteConfig,
+  RouteParams
+} from '@angular/router-deprecated'
 
 import { HeroService } from '../service/hero'
+import { DashboardCom } from './dashboard'
+import { HeroInfoCom } from './hero-info'
+import { HeroListCom } from './hero-list'
 import Hero from '../model/hero'
 
 @Component({
   selector: 'app',
-  directives: [HeroInfoCom],
-  providers: [HeroService],
+
+  directives: [
+    ROUTER_DIRECTIVES,
+    HeroInfoCom
+  ],
+
+  providers: [
+    HeroService,
+    RouteParams,
+    ROUTER_PROVIDERS
+  ],
+
   template: `
     <h1>{{title}}</h1>
     <h2>{{hero.name}}</h2>
@@ -22,41 +40,40 @@ import Hero from '../model/hero'
         <input [(ngModel)]="hero.name" placeholder="name">
       </p>
     </div>
-    <h2>heros</h2>
-    <hero-list>
-      <p *ngFor="let hero of heroes" (click)="onSelect(hero)">
-        <span>{{hero.id}}</span>
-        <span>{{hero.name}}</span>
-      </p>
-    </hero-list>
+
+    <nav>
+      <a [routerLink]="['Dashboard']">Dashboard</a>
+      <a [routerLink]="['Heroes']">Heroes</a>
+    </nav>
+    <router-outlet></router-outlet>
+
     <hero-info [hero]="selectedHero"></hero-info>
   `
 })
 
+@RouteConfig([{
+  path: '/dashboard',
+  name: 'Dashboard',
+  component: DashboardCom,
+  useAsDefault: true
+}, {
+  path: '/heroes/:id',
+  name: 'HeroInfo',
+  component: HeroInfoCom
+}, {
+  path: '/heroes',
+  name: 'Heroes',
+  component: HeroListCom
+}])
+
 export class App {
   constructor(private heroService: HeroService) {
-
   }
 
   title = 'hello'
-  heroes: Hero[]
-  selectedHero: Hero
+
   hero: Hero = {
     id: 1,
     name: 'haoxin'
-  }
-
-  ngOnInit() {
-    this.getHeroes()
-  }
-
-  onSelect(hero: Hero) {
-    this.selectedHero = hero
-  }
-
-  getHeroes() {
-    this.heroService
-      .getHeroes()
-      .then(heros => this.heroes = heros)
   }
 }
