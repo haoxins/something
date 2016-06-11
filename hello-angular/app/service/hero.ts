@@ -1,32 +1,33 @@
 
 import { Injectable } from '@angular/core'
-import Hero from '../model/hero'
+import { Http } from '@angular/http'
 
-const heroes: Hero[] = [{
-  id: 1,
-  name: 'one'
-}, {
-  id: 2,
-  name: 'two'
-}, {
-  id: 3,
-  name: 'three'
-}, {
-  id: 4,
-  name: 'four'
-}]
+import 'rxjs/add/operator/toPromise'
+
+import Hero from '../model/hero'
 
 @Injectable()
 export class HeroService {
-  getHeroes() {
-    return Promise.resolve(heroes)
+
+  private heroesUrl = 'app/heroes'
+
+  constructor(private http: Http) {
+  }
+
+  private handleError(error: any) {
+    console.error(error)
+    return Promise.reject(error.message || error)
+  }
+
+  getHeroes(): Promise<Hero[]> {
+    return this.http.get(this.heroesUrl)
+      .toPromise()
+      .then(response => response.json().data)
+      .catch(this.handleError)
   }
 
   getHero(id: number) {
-    const hero = heroes.filter(h => h.id === id)[0]
-    if (!hero) {
-      throw new Error('not found')
-    }
-    return Promise.resolve(hero)
+    return this.getHeroes()
+      .then(heroes => heroes.filter(hero => hero.id === id)[0])
   }
 }
