@@ -4,11 +4,13 @@ import { bootstrap } from '@angular/platform-browser-dynamic'
 import { HTTP_PROVIDERS, XHRBackend } from '@angular/http'
 import { provide } from '@angular/core'
 
+import { APP_ROUTER_PROVIDERS } from './component/route'
 import { InMemoryDataService } from './service/mock'
 import { App } from './component/app'
 
 bootstrap(App, [
   HTTP_PROVIDERS,
+  APP_ROUTER_PROVIDERS,
   provide(XHRBackend, {
     useClass: InMemoryBackendService
   }),

@@ -1,5 +1,5 @@
 
-import { RouteParams } from '@angular/router-deprecated'
+import { ActivatedRoute } from '@angular/router'
 import { Component, OnInit, Input } from '@angular/core'
 
 import { HeroService } from '../service/hero'
@@ -23,11 +23,11 @@ import Hero from '../model/hero'
 export class HeroInfoCom implements OnInit {
   @Input()
   hero: Hero
+  sub: any
 
   constructor(
     private heroService: HeroService,
-    private routeParams: RouteParams) {
-
+    private route: ActivatedRoute) {
   }
 
   goBack() {
@@ -35,8 +35,14 @@ export class HeroInfoCom implements OnInit {
   }
 
   ngOnInit() {
-    let id = +this.routeParams.get('id')
-    this.heroService.getHero(id)
-      .then(hero => this.hero = hero)
+    this.sub = this.route.params.subscribe(params => {
+      let id = +params['id'];
+      this.heroService.getHero(id)
+        .then(hero => this.hero = hero)
+    })
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe()
   }
 }

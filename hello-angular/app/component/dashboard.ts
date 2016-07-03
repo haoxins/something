@@ -1,6 +1,6 @@
 
-import { Router } from '@angular/router-deprecated'
 import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
 
 import { HeroService } from '../service/hero'
 import Hero from '../model/hero'
@@ -10,9 +10,9 @@ import Hero from '../model/hero'
   template: `
     <h3>Top Heroes</h3>
     <div>
-      <p *ngFor="let hero of heroes" (click)="gotoDetail(hero)">
+      <div *ngFor="let hero of heroes" (click)="gotoDetail(hero)">
         <h4>{{hero.name}}</h4>
-      </p>
+      </div>
     </div>
   `
 })

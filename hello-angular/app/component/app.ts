@@ -2,15 +2,10 @@
 import { Component } from '@angular/core'
 import {
   ROUTER_DIRECTIVES,
-  ROUTER_PROVIDERS,
-  RouteConfig,
-  RouteParams
-} from '@angular/router-deprecated'
+} from '@angular/router'
 
 import { HeroService } from '../service/hero'
-import { DashboardCom } from './dashboard'
 import { HeroInfoCom } from './hero-info'
-import { HeroListCom } from './hero-list'
 import Hero from '../model/hero'
 
 @Component({
@@ -22,9 +17,7 @@ import Hero from '../model/hero'
   ],
 
   providers: [
-    HeroService,
-    RouteParams,
-    ROUTER_PROVIDERS
+    HeroService
   ],
 
   template: `
@@ -42,29 +35,14 @@ import Hero from '../model/hero'
     </div>
 
     <nav>
-      <a [routerLink]="['Dashboard']">Dashboard</a>
-      <a [routerLink]="['Heroes']">Heroes</a>
+      <a [routerLink]="['dashboard']">Dashboard</a>
+      <a [routerLink]="['heroes']">Heroes</a>
     </nav>
     <router-outlet></router-outlet>
 
     <hero-info [hero]="selectedHero"></hero-info>
   `
 })
-
-@RouteConfig([{
-  path: '/dashboard',
-  name: 'Dashboard',
-  component: DashboardCom,
-  useAsDefault: true
-}, {
-  path: '/heroes/:id',
-  name: 'HeroInfo',
-  component: HeroInfoCom
-}, {
-  path: '/heroes',
-  name: 'Heroes',
-  component: HeroListCom
-}])
 
 export class App {
   constructor(private heroService: HeroService) {

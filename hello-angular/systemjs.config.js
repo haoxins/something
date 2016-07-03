@@ -48,7 +48,7 @@
   // Bundled (~40 requests):
   function packUmd(pkgName) {
     packages['@angular/' + pkgName] = {
-      main: pkgName + '.umd.js',
+      main: '/bundles/' + pkgName + '.umd.js',
       defaultExtension: 'js'
     }
   }

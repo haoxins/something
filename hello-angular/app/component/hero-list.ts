@@ -1,6 +1,6 @@
 
-import { Component, OnInit, Input } from '@angular/core'
-import { Router } from '@angular/router-deprecated'
+import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
 
 import { HeroService } from '../service/hero'
 import Hero from '../model/hero'
@@ -49,8 +49,7 @@ export class HeroListCom implements OnInit {
   }
 
   gotoDetail() {
-    this.router.navigate([
-      'HeroInfo', {id: this.selectedHero.id}
-    ])
+    const id = this.selectedHero.id
+    this.router.navigate(['heroes/', id])
   }
 }
