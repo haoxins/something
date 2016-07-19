@@ -9,8 +9,8 @@ const join = p => path.join(__dirname, p)
 
 module.exports = {
   entry: {
-    app: join('app/main'),
-    // vendor: join('app/vendor')
+    app: './app/main',
+    vendor: './app/vendor'
   },
 
   output: {
@@ -19,7 +19,8 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.ts']
+    extensions: ['', '.ts', '.js', '.json'],
+    modulesDirectories: ['node_modules']
   },
 
   module: {
