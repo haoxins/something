@@ -27,7 +27,7 @@ module.exports = {
     loaders: [{
       test: /\.ts$/,
       loader: 'ts'
-    },, {
+    }, {
       test: /\.css$/,
       loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader'),
     }]
@@ -41,6 +41,9 @@ module.exports = {
   ],
 
   plugins: [
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: ['vendor']
+    // }),
     new ExtractTextPlugin('[name].css')
   ]
 }

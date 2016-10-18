@@ -13,9 +13,11 @@ import Hero from '../model/hero'
       <p>
         <span>{{hero.id}}</span>
         <span>{{hero.name}}</span>
-        <input [(ngModel)]="hero.name" placeholder="name">
+        <md-input [(ngModel)]="hero.name" placeholder="name"></md-input>
       </p>
-      <button (click)="goBack()">Back</button>
+      <md-button class="md-raised md-primary" (click)="goBack()">
+        Back
+      </md-button>
     </div>
   `
 })

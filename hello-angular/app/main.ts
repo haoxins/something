@@ -8,6 +8,11 @@ import { APP_ROUTER_PROVIDERS } from './component/route'
 import { InMemoryDataService } from './service/mock'
 import { App } from './component/app'
 
+import '@angular2-material/core'
+import '@angular2-material/button'
+import '@angular2-material/input'
+import '@angular2-material/icon'
+
 bootstrap(App, [
   HTTP_PROVIDERS,
   APP_ROUTER_PROVIDERS,

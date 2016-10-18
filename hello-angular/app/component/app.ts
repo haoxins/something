@@ -30,7 +30,7 @@ import Hero from '../model/hero'
       </p>
       <p>
         <label>name:</label>
-        <input [(ngModel)]="hero.name" placeholder="name">
+        <md-input [(ngModel)]="hero.name" placeholder="name"></md-input>
       </p>
     </div>
 

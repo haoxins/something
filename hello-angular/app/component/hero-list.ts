@@ -20,7 +20,9 @@ import Hero from '../model/hero'
       <h2>
         {{selectedHero.name | uppercase}} is my hero
       </h2>
-      <button (click)="gotoDetail()">View Details</button>
+      <button md-raised-button (click)="gotoDetail()">
+        View Details
+      </button>
     </div>
   `
 })
