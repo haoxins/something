@@ -1,0 +1,9 @@
+{
+  "name": "pingx-demo",
+  "private": true,
+  "scripts": {
+  },
+  "dependencies": {
+    "rxjs": "^5.0.0-rc.1"
+  }
+}
