@@ -1,5 +1,16 @@
 
 import { define, prop, h } from 'skatejs'
+import items from '../fixture/item'
+
+function onclick(id) {
+  console.debug('click:', id)
+
+  items.forEach(i => {
+    if (i.id === id) {
+      i.count++
+    }
+  })
+}
 
 define('x-header', {
   props: {
@@ -7,11 +18,11 @@ define('x-header', {
     desc: prop.string()
   },
 
-  render(elem) {
+  render(p) {
     return (
       <header>
-        <h3>{elem.title}</h3>
-        <p>{elem.desc}</p>
+        <h3>{p.title}</h3>
+        <p>{p.desc}</p>
       </header>
     )
   }
@@ -19,16 +30,20 @@ define('x-header', {
 
 define('x-item', {
   props: {
+    id: prop.number(),
     title: prop.string(),
-    price: prop.number()
+    price: prop.number(),
+    count: prop.number(),
   },
 
-  render(elem) {
-    console.log(elem, elem.title, elem.price)
+  render(p) {
     return (
-      <div onClick={() => console.info('click:', elem.title)}>
-        <p>{elem.title}</p>
-        <p>{elem.price}</p>
+      <div>
+        <p>{p.title}</p>
+        <p>{p.price}</p>
+        <p onClick={() => onclick(p.id)} style={{cursor: 'pointer'}}>
+          {p.count}
+        </p>
       </div>
     )
   }
@@ -36,7 +51,7 @@ define('x-item', {
 
 define('x-content', {
   props: {
-    items: skate.prop.array()
+    items: prop.array()
   },
 
   render(elem) {
@@ -52,24 +67,29 @@ define('x-content', {
   }
 })
 
-define('x-hello', {
-  render() {
-    const items = [{
-      title: 'one',
-      price: 123
-    }, {
-      title: 'two',
-      price: 456
-    }, {
-      title: 'three',
-      price: 789
-    }]
+const Hello = define('x-hello', {
+  props: {
+    title: prop.string(),
+    desc: prop.string(),
+    items: prop.array()
+  },
 
+  render(p) {
     return (
       <main>
-        <x-header title='hello' desc='bingo' />
-        <x-content items={items} />
+        <x-header title={p.title} desc={p.desc} />
+        <x-content items={p.items} />
       </main>
     )
   }
 })
+
+const hello = new Hello()
+
+setInterval(() => {
+  hello.title = `hello ${Date.now() % 1000}`
+  hello.desc = `world ${Math.random() * 1000 % 1000 | 0}`
+  hello.items = [...items]
+}, 1000)
+
+document.body.appendChild(hello)
