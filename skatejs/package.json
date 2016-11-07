@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "rxjs": "5.0.0-rc.1",
-    "skatejs": "4"
+    "skatejs": "4",
+    "skatejs-web-components": "3"
   }
 }

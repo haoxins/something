@@ -2,6 +2,17 @@
 import { define, prop, h } from 'skatejs'
 import items from '../fixture/item'
 
+const cache = {}
+const Style = (props, chren) => {
+  if (!cache[props.css]) {
+    const tmp = cache[props.css] = document.createElement('template')
+    tmp.innerHTML = `<style>${props.css}</style>`
+    ShadyCSS.prepareTemplate(tmp, props.for.tagName.toLowerCase())
+  }
+  ShadyCSS.applyStyle(props.for)
+  return <style>{props.css}</style>
+}
+
 function onclick(id) {
   console.debug('click:', id)
 
@@ -12,7 +23,7 @@ function onclick(id) {
   })
 }
 
-define('x-header', {
+const Header = define('x-header', {
   props: {
     title: prop.string(),
     desc: prop.string()
@@ -28,7 +39,7 @@ define('x-header', {
   }
 })
 
-define('x-item', {
+const Item = define('x-item', {
   props: {
     id: prop.number(),
     title: prop.string(),
@@ -37,7 +48,19 @@ define('x-item', {
   },
 
   render(p) {
-    return (
+    return [
+      <Style for={p} css={`
+        div {
+          display: flex;
+          align-items: center;
+          width: 240px;
+          font-style: var(--font-style);
+        }
+
+        div p {
+          width: 80px;
+        }
+      `} />,
       <div>
         <p>{p.title}</p>
         <p>{p.price}</p>
@@ -45,11 +68,11 @@ define('x-item', {
           {p.count}
         </p>
       </div>
-    )
+    ]
   }
 })
 
-define('x-content', {
+const Content = define('x-content', {
   props: {
     items: prop.array()
   },
@@ -59,7 +82,7 @@ define('x-content', {
       <content>
         {
           elem.items.map(item => (
-            <x-item {...item} />
+            <Item {...item} />
           ))
         }
       </content>
@@ -77,8 +100,8 @@ const Hello = define('x-hello', {
   render(p) {
     return (
       <main>
-        <x-header title={p.title} desc={p.desc} />
-        <x-content items={p.items} />
+        <Header title={p.title} desc={p.desc} />
+        <Content items={p.items} />
       </main>
     )
   }
