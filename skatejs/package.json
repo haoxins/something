@@ -11,7 +11,8 @@
     "babel-core": "6",
     "babel-loader": "6",
     "babel-plugin-transform-react-jsx": "6",
-    "webpack": "2.1.0-beta.25"
+    "babel-preset-esnext": "1",
+    "webpack": "1"
   },
   "dependencies": {
     "rxjs": "5.0.0-rc.1",

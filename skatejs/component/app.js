@@ -1,6 +1,6 @@
 
 import { define, prop, h } from 'skatejs'
-import items from '../fixture/item'
+import { addCount } from './store'
 
 const cache = {}
 const Style = (props, chren) => {
@@ -11,16 +11,6 @@ const Style = (props, chren) => {
   }
   ShadyCSS.applyStyle(props.for)
   return <style>{props.css}</style>
-}
-
-function onclick(id) {
-  console.debug('click:', id)
-
-  items.forEach(i => {
-    if (i.id === id) {
-      i.count++
-    }
-  })
 }
 
 const Header = define('x-header', {
@@ -64,7 +54,7 @@ const Item = define('x-item', {
       <div>
         <p>{p.title}</p>
         <p>{p.price}</p>
-        <p onClick={() => onclick(p.id)} style={{cursor: 'pointer'}}>
+        <p onClick={() => addCount(p.id)} style={{cursor: 'pointer'}}>
           {p.count}
         </p>
       </div>
@@ -74,15 +64,15 @@ const Item = define('x-item', {
 
 const Content = define('x-content', {
   props: {
-    items: prop.array()
+    items: prop.array(),
   },
 
-  render(elem) {
+  render(p) {
     return (
       <content>
         {
-          elem.items.map(item => (
             <Item {...item} />
+          p.items.map(item => (
           ))
         }
       </content>
@@ -94,7 +84,7 @@ const Hello = define('x-hello', {
   props: {
     title: prop.string(),
     desc: prop.string(),
-    items: prop.array()
+    items: prop.array(),
   },
 
   render(p) {
@@ -107,12 +97,4 @@ const Hello = define('x-hello', {
   }
 })
 
-const hello = new Hello()
-
-setInterval(() => {
-  hello.title = `hello ${Date.now() % 1000}`
-  hello.desc = `world ${Math.random() * 1000 % 1000 | 0}`
-  hello.items = [...items]
-}, 1000)
-
-document.body.appendChild(hello)
+export default Hello
