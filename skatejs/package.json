@@ -15,6 +15,7 @@
     "webpack": "1"
   },
   "dependencies": {
+    "lodash.pick": "4",
     "rxjs": "5.0.0-rc.1",
     "skatejs": "4",
     "skatejs-web-components": "3"

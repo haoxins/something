@@ -1,6 +1,7 @@
 
-import { define, prop, h } from 'skatejs'
-import { addCount } from './store'
+import { define, link, prop, h } from 'skatejs'
+import { addCount, addItem } from './store'
+import pick from 'lodash.pick'
 
 const cache = {}
 const Style = (props, chren) => {
@@ -71,11 +72,36 @@ const Content = define('x-content', {
     return (
       <content>
         {
-            <Item {...item} />
           p.items.map(item => (
+            <Item {...item} />
           ))
         }
       </content>
+    )
+  }
+})
+
+const Add = define('x-add', {
+  props: {
+    title: prop.string({attribute: true}),
+    price: prop.number({attribute: true}),
+  },
+
+  render(p) {
+    return (
+      <footer>
+        <p>
+          <input type='text' name='title' onChange={link(p)} />
+        </p>
+        <p>
+          <input type='number' name='price' onChange={link(p)} />
+        </p>
+        <p>
+          <button onClick={() => {
+            addItem(pick(p, 'title', 'price'))
+          }}>Add</button>
+        </p>
+      </footer>
     )
   }
 })
@@ -92,6 +118,7 @@ const Hello = define('x-hello', {
       <main>
         <Header title={p.title} desc={p.desc} />
         <Content items={p.items} />
+        <Add />
       </main>
     )
   }
