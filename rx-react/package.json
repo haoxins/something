@@ -1,0 +1,22 @@
+{
+  "name": "rx-react",
+  "private": true,
+  "scripts": {
+    "build": "webpack --config webpack.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "react": "15",
+    "react-dom": "15",
+    "rxjs": "^5.0.0-rc.4"
+  },
+  "devDependencies": {
+    "babel-cli": "6",
+    "babel-core": "6",
+    "babel-loader": "6",
+    "babel-preset-stage-2": "6",
+    "babel-preset-react": "6",
+    "webpack": "^2.1.0-beta.27"
+  }
+}
