@@ -1,49 +1,55 @@
 
 import items from '../fixture/item'
 
+import clone from 'clone'
 import Rx from 'rxjs'
 
-const itemStore = new Rx.Subject()
+const addCountSubject = new Rx.Subject()
+const addItemSubject = new Rx.Subject()
 
-export function addItem(item) {
-  itemStore.next({
-    type: 'add item',
-    payload: item
-  })
+let state = {
+  items: items.map(i => ({...i}))
 }
 
-export function addCount(id, count = 1) {
-  itemStore.next({
-    type: 'add count',
-    payload: {id, count}
-  })
+export const addItem = item => {
+  addItemSubject.next(item)
 }
 
-export const store = Rx.Observable
-  .of({items: items.map(i => ({...i}))})
-  .merge(itemStore)
-  .scan((state, {type, payload}, count) => {
-    switch (type) {
-      case 'add count':
-        return {
-          items: state.items.map(i => {
-            if (i.id === payload.id) {
-              return {
-                ...i,
-                count: i.count + payload.count
-              }
-            }
+export const addCount = (id, count = 1) => {
+  addCountSubject.next({id, count})
+}
 
-            return {...i}
-          })
-        }
-      case 'add item':
+export const store = new Rx.ReplaySubject()
+
+store.next(state)
+
+addCountSubject.subscribe(({id, count}) => {
+  state = clone({
+    ...state,
+    items: state.items.map(i => {
+      if (i.id === id) {
         return {
-          items: [...state.items, {
-            count: 0,
-            ...payload,
-            id: items.length + 1
-          }]
+          ...i,
+          count: i.count + count
         }
-    }
+      }
+
+      return {...i}
+    })
   })
+
+  store.next(state)
+})
+
+addItemSubject.subscribe(item => {
+  state = clone({
+    ...state,
+    items: [...state.items, {
+      ...item,
+      count: 0,
+      id: state.items.length + 1
+    }]
+  })
+
+  store.next(state)
+})

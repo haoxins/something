@@ -11,13 +11,14 @@
     "babel-core": "6",
     "babel-loader": "6",
     "babel-plugin-transform-react-jsx": "6",
-    "babel-preset-esnext": "1",
-    "webpack": "1"
+    "babel-preset-stage-2": "6",
+    "webpack": "2.1.0-beta.27"
   },
   "dependencies": {
+    "clone": "2",
     "lodash.pick": "4",
-    "rxjs": "5.0.0-rc.1",
+    "rxjs": "5.0.0-rc.4",
     "skatejs": "4",
-    "skatejs-web-components": "3"
+    "skatejs-web-components": "5"
   }
 }

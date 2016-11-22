@@ -1,5 +1,5 @@
 {
-  "presets": ["esnext"],
+  "presets": ["stage-2"],
   "plugins": [
     ["transform-react-jsx", {
       "pragma": "h"
