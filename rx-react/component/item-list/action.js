@@ -1,5 +1,5 @@
 
-import { createAction } from '../../lib'
+import { createAction } from 'react.rx'
 
 export const add = createAction(function(item) {
   return item

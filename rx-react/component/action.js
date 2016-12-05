@@ -1,6 +1,6 @@
 
 import rx from 'rxjs'
-import { createAction } from '../lib'
+import { createAction } from 'react.rx'
 
 export const switchItem = createAction(function(id) {
   return id

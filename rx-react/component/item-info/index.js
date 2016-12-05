@@ -2,7 +2,7 @@
 import { Component } from 'react'
 
 import { getInfo, update } from './action'
-import { connect } from '../../lib'
+import { connect } from 'react.rx'
 import store from './store'
 
 @connect(store)

@@ -1,5 +1,5 @@
 
-import { createAction } from '../../lib'
+import { createAction } from 'react.rx'
 
 import {
   updateItemInfo,

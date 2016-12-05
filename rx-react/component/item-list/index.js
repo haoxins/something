@@ -1,7 +1,7 @@
 
 import { Component } from 'react'
 
-import { connect } from '../../lib'
+import { connect } from 'react.rx'
 import { add, del } from './action'
 import store from './store'
 

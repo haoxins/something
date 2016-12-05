@@ -2,7 +2,7 @@
 import { Component } from 'react'
 
 import { switchItem } from './action'
-import { connect } from '../lib'
+import { connect } from 'react.rx'
 
 import Store from './store'
 

@@ -1,5 +1,5 @@
 
-import { createStore } from '../../lib'
+import { createStore } from 'react.rx'
 import { getInfo, update } from './action'
 
 const store = createStore({
