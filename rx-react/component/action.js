@@ -1,12 +1,7 @@
 
 import rx from 'rxjs'
+import { createAction } from '../lib'
 
-const switchItemSubject = new rx.Subject()
-
-export const subjects = {
-  switchItemSubject
-}
-
-export function switchItem(id) {
-  switchItemSubject.next(id)
-}
+export const switchItem = createAction(function(id) {
+  return id
+})

@@ -1,18 +1,10 @@
 
-import rx from 'rxjs'
+import { createAction } from '../../lib'
 
-const addItemSubject = new rx.Subject()
-const delItemSubject = new rx.Subject()
+export const add = createAction(function(item) {
+  return item
+})
 
-export const subjects = {
-  addItemSubject,
-  delItemSubject
-}
-
-export function add(item) {
-  addItemSubject.next(item)
-}
-
-export function del(id) {
-  delItemSubject.next(id)
-}
+export const del = createAction(function(id) {
+  return id
+})

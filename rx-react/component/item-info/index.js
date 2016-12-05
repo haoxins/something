@@ -3,9 +3,9 @@ import { Component } from 'react'
 
 import { getInfo, update } from './action'
 import { connect } from '../../lib'
-import Store from './store'
+import store from './store'
 
-@connect(Store)
+@connect(store)
 class ItemInfo extends Component {
   componentWillReceiveProps({id}) {
     // TODO - use rxjs
@@ -14,10 +14,14 @@ class ItemInfo extends Component {
     }
   }
 
+  static defaultProps = {
+    info: {}
+  }
+
   state = {}
 
   render() {
-    const { info = {} } = this.props
+    const { info } = this.props
     const { desc } = this.state
 
     return (

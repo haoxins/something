@@ -25,7 +25,7 @@ function connect(observable) {
 
       render() {
         return (
-          <InnerComponent {...this.state} {...this.props} />
+          <InnerComponent {...this.props} {...this.state}  />
         )
       }
     }

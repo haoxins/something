@@ -1,17 +1,16 @@
 
 import { createStore } from '../../lib'
-import { subjects } from './action'
-import rx from 'rxjs'
+import { getInfo, update } from './action'
 
 const store = createStore({
   info: {}
 })
 
-subjects.getItemInfoSubject.subscribe(info => {
+getInfo.subscribe(info => {
   store.update({info})
 })
 
-subjects.updateItemSubject.subscribe(up => {
+update.subscribe(up => {
   store.update({info: up})
 })
 

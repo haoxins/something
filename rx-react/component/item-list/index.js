@@ -3,7 +3,7 @@ import { Component } from 'react'
 
 import { connect } from '../../lib'
 import { add, del } from './action'
-import Store from './store'
+import store from './store'
 
 function noop() {}
 
@@ -21,7 +21,7 @@ const Items = ({items = [], onSwitchItem}) => (
   </div>
 )
 
-@connect(Store)
+@connect(store)
 class ItemList extends Component {
   static defaultProps = {
     onSwitchItem: noop
@@ -30,7 +30,7 @@ class ItemList extends Component {
   state = {}
 
   render() {
-    const { items, onSwitchItem } = this.props
+    const { items, onSwitchItem} = this.props
     const { title, price } = this.state
 
     return (
