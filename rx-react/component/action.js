@@ -1,14 +1,12 @@
 
 import rx from 'rxjs'
 
-const addItemSubject = new rx.Subject()
-const delItemSubject = new rx.Subject()
+const switchItemSubject = new rx.Subject()
 
 export const subjects = {
-  addItemSubject,
-  delItemSubject
+  switchItemSubject
 }
 
-export const addItem = item => addItemSubject.next(item)
-
-export const delItem = id => delItemSubject.next(id)
+export function switchItem(id) {
+  switchItemSubject.next(id)
+}

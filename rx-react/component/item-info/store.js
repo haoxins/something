@@ -6,13 +6,21 @@ import rx from 'rxjs'
 const subject = new rx.ReplaySubject(1)
 
 let state = {
-  currentItemId: 0
+  info: {}
 }
 
-subjects.switchItemSubject.subscribe(id => {
+subjects.getItemInfoSubject.subscribe(info => {
+  state = update(state, {
+    $merge: {info}
+  })
+
+  subject.next(state)
+})
+
+subjects.updateItemSubject.subscribe(up => {
   state = update(state, {
     $merge: {
-      currentItemId: id
+      info: up
     }
   })
 

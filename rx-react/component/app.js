@@ -1,22 +1,11 @@
 
 import { Component } from 'react'
 
-import { addItem, delItem } from './action'
+import { switchItem } from './action'
 import Store from './store'
 
-const Items = ({items = []}) => (
-  <div>
-    {
-      items.map(i => (
-        <section key={i.id}>
-          <label>{i.title}</label>
-          <span>{i.price}</span>
-          <button onClick={() => delItem(i.id)}>del</button>
-        </section>
-      ))
-    }
-  </div>
-)
+import ItemInfo from './item-info'
+import ItemList from './item-list'
 
 class App extends Component {
   constructor(props, ctx) {
@@ -37,24 +26,13 @@ class App extends Component {
   }
 
   render() {
-    const { items, title, price } = this.state
+    const { currentItemId } = this.state
 
     return (
-      <div>
-        <Items items={items} />
-        <div>
-          <input value={title} onChange={
-            e => this.setState({title: e.target.value})
-          } />
-          <input value={price} onChange={
-            e => this.setState({price: e.target.value})
-          } />
-          <button onClick={() => {
-            addItem({title, price})
-            this.setState({title: '', price: ''})
-          }}>add</button>
-        </div>
-      </div>
+      <app>
+        <ItemList onSwitchItem={id => switchItem(id)} />
+        <ItemInfo id={currentItemId} />
+      </app>
     )
   }
 }
