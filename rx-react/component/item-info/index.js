@@ -2,14 +2,11 @@
 import { Component } from 'react'
 
 import { getInfo, update } from './action'
+import { connect } from '../../lib'
 import Store from './store'
 
+@connect(Store)
 class ItemInfo extends Component {
-  constructor(props, ctx) {
-    super(props, ctx)
-    this.state = {}
-  }
-
   componentWillReceiveProps({id}) {
     // TODO - use rxjs
     if (id !== this.props.id) {
@@ -17,20 +14,8 @@ class ItemInfo extends Component {
     }
   }
 
-  componentWillUnmount() {
-    Store.unsubscribe(this.subscribe)
-  }
-
-  componentDidMount() {
-    Store.subscribe(this.subscribe)
-  }
-
-  subscribe = up => {
-    this.setState({...up})
-  }
-
   render() {
-    const { info = {}, desc } = this.state
+    const { info = {}, desc } = this.props
 
     return (
       <info>

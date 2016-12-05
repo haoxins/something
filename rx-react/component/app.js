@@ -2,31 +2,17 @@
 import { Component } from 'react'
 
 import { switchItem } from './action'
+import { connect } from '../lib'
+
 import Store from './store'
 
 import ItemInfo from './item-info'
 import ItemList from './item-list'
 
+@connect(Store)
 class App extends Component {
-  constructor(props, ctx) {
-    super(props, ctx)
-    this.state = {}
-  }
-
-  componentWillUnmount() {
-    Store.unsubscribe(this.subscribe)
-  }
-
-  componentDidMount() {
-    Store.subscribe(this.subscribe)
-  }
-
-  subscribe = up => {
-    this.setState({...up})
-  }
-
   render() {
-    const { currentItemId } = this.state
+    const { currentItemId } = this.props
 
     return (
       <app>

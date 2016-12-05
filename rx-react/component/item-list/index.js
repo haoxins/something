@@ -1,6 +1,7 @@
 
 import { Component } from 'react'
 
+import { connect } from '../../lib'
 import { add, del } from './action'
 import Store from './store'
 
@@ -20,31 +21,17 @@ const Items = ({items = [], onSwitchItem}) => (
   </div>
 )
 
+@connect(Store)
 class ItemList extends Component {
-  constructor(props, ctx) {
-    super(props, ctx)
-    this.state = {}
-  }
-
   static defaultProps = {
     onSwitchItem: noop
   }
 
-  componentWillUnmount() {
-    Store.unsubscribe(this.subscribe)
-  }
-
-  componentDidMount() {
-    Store.subscribe(this.subscribe)
-  }
-
-  subscribe = up => {
-    this.setState({...up})
-  }
+  state = {}
 
   render() {
-    const { items, title, price } = this.state
-    const { onSwitchItem } = this.props
+    const { items, onSwitchItem } = this.props
+    const { title, price } = this.state
 
     return (
       <list>
