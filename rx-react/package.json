@@ -7,6 +7,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "clone": "2",
     "react": "15",
     "react-dom": "15",
     "rx-lite": "4",

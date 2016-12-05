@@ -1,32 +1,18 @@
 
-import update from 'react/lib/update'
+import { createStore } from '../../lib'
 import { subjects } from './action'
 import rx from 'rxjs'
 
-const subject = new rx.ReplaySubject(1)
-
-let state = {
+const store = createStore({
   info: {}
-}
+})
 
 subjects.getItemInfoSubject.subscribe(info => {
-  state = update(state, {
-    $merge: {info}
-  })
-
-  subject.next(state)
+  store.update({info})
 })
 
 subjects.updateItemSubject.subscribe(up => {
-  state = update(state, {
-    $merge: {
-      info: up
-    }
-  })
-
-  subject.next(state)
+  store.update({info: up})
 })
 
-subject.next(state)
-
-export default subject
+export default store

@@ -14,8 +14,11 @@ class ItemInfo extends Component {
     }
   }
 
+  state = {}
+
   render() {
-    const { info = {}, desc } = this.props
+    const { info = {} } = this.props
+    const { desc } = this.state
 
     return (
       <info>
