@@ -1,17 +1,23 @@
 
 import { createStore } from 'react.rx'
-import { getInfo, update } from './action'
+
+import {
+  getInfo,
+  update
+} from './action'
 
 const store = createStore({
   info: {}
 })
 
-getInfo.subscribe(info => {
-  store.update({info})
-})
+store.subscribeActions({
+  [getInfo]: info => ({
+    info
+  }),
 
-update.subscribe(up => {
-  store.update({info: up})
+  [update]: up => ({
+    info: up
+  }),
 })
 
 export default store

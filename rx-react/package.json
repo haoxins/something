@@ -9,9 +9,9 @@
   "dependencies": {
     "react": "15",
     "react-dom": "15",
-    "react.rx": "*",
+    "react.rx": "latest",
     "rx-lite": "4",
-    "rxjs": "^5.0.0-rc.4"
+    "rxjs": "^5.0.0-rc.5"
   },
   "devDependencies": {
     "babel-cli": "6",
