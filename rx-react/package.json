@@ -11,7 +11,7 @@
     "react-dom": "15",
     "react.rx": "latest",
     "rx-lite": "4",
-    "rxjs": "^5.0.0-rc.5"
+    "rxjs": "5"
   },
   "devDependencies": {
     "babel-cli": "6",
@@ -21,6 +21,6 @@
     "babel-plugin-transform-decorators-legacy": "1",
     "babel-plugin-transform-object-rest-spread": "6",
     "babel-preset-react": "6",
-    "webpack": "^2.1.0-beta.27"
+    "webpack": "2"
   }
 }
