@@ -1,6 +1,0 @@
-{
-  "extends": "loopback",
-  "rules": {
-    "semi": ["warn", "never"]
-  }
-}
