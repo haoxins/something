@@ -1,0 +1,7 @@
+{
+  "name": "testing-with-headless-chrome",
+  "private": true,
+  "scripts": {
+    "test": "echo todo"
+  }
+}
