@@ -7,9 +7,9 @@
   "author": "haoxin",
   "license": "MIT",
   "dependencies": {
-    "rxjs": "^5.0.0-rc.3"
+    "rxjs": "^5.4.1"
   },
   "devDependencies": {
-    "webpack": "^2.1.0-beta.26"
+    "webpack": "^3.0.0"
   }
 }
