@@ -1,0 +1,10 @@
+{
+  "name": "loopback-next-example",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {},
+  "dependencies": {
+    "@loopback/core": "^4.0.0-alpha.13",
+    "@types/node": "^8.0.28"
+  }
+}

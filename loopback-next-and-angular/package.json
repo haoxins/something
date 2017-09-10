@@ -2,11 +2,19 @@
   "name": "loopback-next-and-angular",
   "version": "1.0.0",
   "private": true,
-  "scripts": {},
+  "scripts": {
+    "test": "mocha test.js"
+  },
   "dependencies": {
-    "@loopback/core": "^4.0.0-alpha.12"
+    "@loopback/authentication": "^4.0.0-alpha.7",
+    "@loopback/core": "^4.0.0-alpha.13",
+    "@loopback/repository": "^4.0.0-alpha.7",
+    "@types/node": "^8.0.26",
+    "loopback-connector-postgresql": "^3.0.3",
+    "loopback-datasource-juggler": "^3.11.0"
   },
   "devDependencies": {
-    "typings": "^2.1.1"
+    "mocha": "^3.5.0",
+    "supertest": "^3.0.0"
   }
 }
