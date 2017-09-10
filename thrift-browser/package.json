@@ -1,0 +1,13 @@
+{
+  "name": "thrift-browser",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "gen": "thrift --gen js:node user.thrift && thrift --gen js:node hello.thrift",
+    "serve": "python -m SimpleHTTPServer 3003"
+  },
+  "dependencies": {
+    "connect": "^3.6.2",
+    "thrift": "^0.10.0"
+  }
+}
