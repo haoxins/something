@@ -4,7 +4,14 @@
   "version": "1.0.0",
   "scripts": {},
   "dependencies": {
+    "@loopback/authentication": "^4.0.0-alpha.7",
     "@loopback/core": "^4.0.0-alpha.13",
-    "@types/node": "^8.0.28"
+    "@types/node": "^8.0.28",
+    "mocha": "^3.5.1",
+    "passport": "^0.4.0",
+    "passport-http": "^0.3.0"
+  },
+  "devDependencies": {
+    "supertest": "^3.0.0"
   }
 }
