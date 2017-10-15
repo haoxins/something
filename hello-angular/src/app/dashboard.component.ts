@@ -5,19 +5,15 @@ import { HeroService } from './hero.service'
 import { Hero } from './hero'
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  providers: [HeroService]
+  selector: 'my-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: [ './dashboard.component.css' ]
 })
-export class AppComponent implements OnInit {
+export class DashboardComponent implements OnInit {
   constructor(private heroService: HeroService) {
   }
 
-  title = '哇塞'
-
-  selectedHero: Hero
-  heroes: Hero[]
+  heroes: Hero[] = []
 
   ngOnInit(): void {
     this.getHeroes()
@@ -25,9 +21,5 @@ export class AppComponent implements OnInit {
 
   async getHeroes() {
     this.heroes = await this.heroService.getHeroes()
-  }
-
-  onSelect(hero: Hero): void {
-    this.selectedHero = hero
   }
 }
