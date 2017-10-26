@@ -26,6 +26,6 @@ export class InMemoryDataService implements InMemoryDbService {
       id: 7,
       name: '公孙月'
     }]
-    return heroes
+    return {heroes}
   }
 }
