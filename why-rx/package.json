@@ -1,15 +1,9 @@
 {
   "name": "why-rxjs",
   "private": true,
-  "scripts": {
-    "build": "webpack --config webpack.js"
-  },
   "author": "haoxin",
   "license": "MIT",
   "dependencies": {
-    "rxjs": "^5.4.1"
-  },
-  "devDependencies": {
-    "webpack": "^3.0.0"
+    "rxjs": "^5.5.2"
   }
 }
