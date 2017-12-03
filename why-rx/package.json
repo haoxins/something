@@ -5,5 +5,13 @@
   "license": "MIT",
   "dependencies": {
     "rxjs": "^5.5.2"
+  },
+  "devDependencies": {
+    "eslint-config-ok": "github:haoxins/eslint-config"
+  },
+  "eslintConfig": {
+    "extends": [
+      "ok"
+    ]
   }
 }
